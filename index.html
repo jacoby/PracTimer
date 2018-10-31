@@ -10,10 +10,43 @@
     <style>
         body {
             background: #666;
+            background-color: black;
             font-family: Arial, Helvetica, sans-serif;
         }
 
         #numbers {
+            -webkit-text-stroke-color: white;
+            -webkit-text-stroke-width: 0.38vw;
+            color: black;
+            font-family: Impact, Arial, Helvetica, sans-serif;
+            font-size: 38vw;
+            letter-spacing: -0.8vw;
+            text-align: center;
+        }
+
+        #numbers.min5 {
+            color: black;
+            text-shadow:
+                0 0 1vw greenyellow,
+                0 0 2vw greenyellow,
+                0 0 3vw greenyellow,
+                0 0 4vw greenyellow,
+                0 0 5vw greenyellow;
+        }
+
+        #numbers.min1 {
+            -webkit-text-stroke-color: red;
+            -webkit-text-stroke-width: 0.38vw;
+            color: black;
+            text-shadow:
+                0 0 1vw red,
+                0 0 2vw red,
+                0 0 3vw red,
+                0 0 4vw red,
+                0 0 5vw red;
+        }
+
+        /* #numbers {
             font-family: Arial, Helvetica, sans-serif;
             font-size: 35vw;
             font-weight: 900;
@@ -25,8 +58,8 @@
             text-align: center;
             text-shadow: 0 0 5vh black;
             top: 0;
-            /* -webkit-text-stroke-color: black;
-            -webkit-text-stroke-width: 1vh; */
+             -webkit-text-stroke-color: black;
+            -webkit-text-stroke-width: 1vh; 
             width: 100%;
             z-index: 0;
         }
@@ -37,7 +70,7 @@
 
         #numbers.min1 {
             color: #f22;
-        }
+        } */
 
         #header {
             font-size: 3.95vw;
@@ -126,7 +159,8 @@
             <a class="close" id="close" href="#">X</a>
             <div class="content">
                 <p>
-                    I had need for a timer. I didn't like any of the timers that were available to me, so I wrote one. I wrote it using Vanilla
+                    I had need for a timer. I didn't like any of the timers that were available to me, so I wrote one.
+                    I wrote it using Vanilla
                     Javascript, location.hash, and a few interesting parts of CSS and HTML5.
                     <p>
                         All controls are via
