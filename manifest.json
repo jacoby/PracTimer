@@ -1,0 +1,10 @@
+{
+  "short_name": "Practimer",
+  "name": "Practimer - a Practical Web Timer",
+  "icons":[]
+  "start_url": "/#5m0s",
+  "display": "minimal-ui",
+  "scope": "/",
+  "background_color": "#000000",
+  "theme_color": "#000000"
+}
