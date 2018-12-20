@@ -112,9 +112,9 @@ function timer() {
       display_minutes = "0" + display_minutes;
     }
 
-    console.log(
-      [location.hash, hopper, minutes, seconds, "", display_minutes].join(" ")
-    );
+    // console.log(
+    //   [location.hash, hopper, minutes, seconds, "", display_minutes].join(" ")
+    // );
 
     // Stop the clock if 
     if (location.hash != '#about') {
@@ -132,7 +132,7 @@ function timer() {
           tone.stop();
         }, 500);
       }
-      console.log("done");
+      // console.log("done");
     } else if (hopper < 10) {
       if (AudioContext) {
         tone.start();
