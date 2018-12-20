@@ -1,7 +1,7 @@
 {
   "short_name": "Practimer",
   "name": "Practimer - a Practical Web Timer",
-  "icons":[]
+  "icons":[],
   "start_url": "/#5m0s",
   "display": "minimal-ui",
   "scope": "/",
