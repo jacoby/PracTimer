@@ -1,294 +1,326 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>PracTimer</title>
-    <meta charset="UTF-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta
-      name="description"
-      content="PracTimer is a Timer built using Vanilla Javascript, HTML5 and CSS."
-    />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Oswald:700"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        background: #666;
-        background-color: black;
-        font-family: Arial, Helvetica, sans-serif;
-      }
 
-      #numbers {
-        -webkit-text-stroke-color: white;
-        -webkit-text-stroke-width: 0.38vw;
-        color: black;
-        font-family: "Oswald", Impact, sans-serif;
-        /* Will work harder to stop the date from moving alter */
-        /* font-family: "Consolas", "Droid Sans Mono", "Courier New", Courier,
+<head>
+  <title>PracTimer</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="PracTimer is a Timer built using Vanilla Javascript, HTML5 and CSS." />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link href="https://fonts.googleapis.com/css?family=Oswald:700" rel="stylesheet" />
+  <style>
+    body {
+      background: #666;
+      background-color: black;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #header {
+      font-size: 3.95vw;
+      text-align: right;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 2;
+    }
+
+    #header a {
+      padding: 1vw;
+      color: #999999;
+      text-decoration: none;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      transition: opacity 500ms;
+      visibility: hidden;
+      opacity: 0;
+      z-index: 5;
+    }
+
+    .overlay:target {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .popup {
+      margin: 70px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 5px;
+      width: 50%;
+      position: relative;
+      z-index: 15;
+      transition: all 5s ease-in-out;
+    }
+
+    .popup h2 {
+      margin-top: 0;
+      color: #333;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+    }
+
+    .popup .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      transition: all 200ms;
+      font-size: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #333;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .popup .close:hover {
+      color: red;
+    }
+
+    .popup .content {
+      font-size: 16px;
+      font-family: Arial, Helvetica, sans-serif;
+      max-height: 30%;
+      overflow: auto;
+    }
+
+    /* Will work harder to stop the date from moving alter */
+    /* font-family: "Consolas", "Droid Sans Mono", "Courier New", Courier,
           monospace; */
-        font-weight: bold;
-        font-size: 39vw;
-        line-height: 36vw;
-        letter-spacing: -1vw;
-        text-align: center;
-        text-align: center;
+
+    .min5 {
+      color: black;
+      text-shadow:  0 0 2vw greenyellow, 
+                    0 0 4vw greenyellow,
+                    0 0 6vw greenyellow,
+                    0 0 8vw greenyellow,
+                    0 0 10vw greenyellow;
+    }
+
+    .min1 {
+      color: black;
+      text-shadow:  0 0 2vw red,
+                    0 0 4vw red,
+                    0 0 6vw red,
+                    0 0 8vw red,
+                    0 0 10vw red;
+    }
+
+    #time {
+      text-align: center;
+    }
+
+    #minute,
+    #second {
+      -webkit-text-stroke-color: white;
+      -webkit-text-stroke-width: 0.38vw;
+      color: black;
+      font-family: "Oswald", Impact, sans-serif;
+      font-weight: bold;
+      letter-spacing: -1vw;
+    }
+
+    @media screen and (orientation: portrait) {
+
+      #minute,
+      #second {
+        display: block;
+        font-size: 65vw;
+        line-height: 60vw;
+      }
+    }
+
+    @media screen and (orientation: landscape) {
+      #minute::after {
+        content: ":";
       }
 
-      #numbers.min5 {
-        color: black;
-        text-shadow: 0 0 1vw greenyellow, 0 0 2vw greenyellow,
-          0 0 3vw greenyellow, 0 0 4vw greenyellow, 0 0 5vw greenyellow;
+      #minute,
+      #second {
+        display: inline;
+        font-size: 35vw;
+        line-height: 30vw;
       }
+    }
+  </style>
+</head>
 
-      #numbers.min1 {
-        color: black;
-        text-shadow: 0 0 1vw red, 0 0 2vw red, 0 0 3vw red, 0 0 4vw red,
-          0 0 5vw red;
-      }
+<body>
+  <div id="header"><a href="#about"> About </a></div>
+  <div id="about" class="overlay">
+    <div class="popup">
+      <h2>About</h2>
+      <a class="close" id="close" href="#">X</a>
+      <div class="content">
+        <p>
+          I had need for a timer. I didn't like any of the timers that were
+          available to me, so I wrote one. I wrote it using Vanilla
+          Javascript, location.hash, and a few interesting parts of CSS and
+          HTML5.
+        </p>
 
-      #header {
-        font-size: 3.95vw;
-        text-align: right;
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 2;
-      }
-
-      #header a {
-        padding: 1vw;
-        color: #999999;
-        text-decoration: none;
-      }
-
-      .overlay {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.7);
-        transition: opacity 500ms;
-        visibility: hidden;
-        opacity: 0;
-        z-index: 5;
-      }
-
-      .overlay:target {
-        visibility: visible;
-        opacity: 1;
-      }
-
-      .popup {
-        margin: 70px auto;
-        padding: 20px;
-        background: #fff;
-        border-radius: 5px;
-        width: 50%;
-        position: relative;
-        z-index: 15;
-        transition: all 5s ease-in-out;
-      }
-
-      .popup h2 {
-        margin-top: 0;
-        color: #333;
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: 900;
-      }
-
-      .popup .close {
-        position: absolute;
-        top: 20px;
-        right: 30px;
-        transition: all 200ms;
-        font-size: 30px;
-        font-weight: bold;
-        text-decoration: none;
-        color: #333;
-        font-family: Arial, Helvetica, sans-serif;
-      }
-
-      .popup .close:hover {
-        color: red;
-      }
-
-      .popup .content {
-        font-size: 16px;
-        font-family: Arial, Helvetica, sans-serif;
-        max-height: 30%;
-        overflow: auto;
-      }
-    </style>
-  </head>
-
-  <body>
-    <div id="header"><a href="#about"> About </a></div>
-    <div id="about" class="overlay">
-      <div class="popup">
-        <h2>About</h2>
-        <a class="close" id="close" href="#">X</a>
-        <div class="content">
-          <p>
-            I had need for a timer. I didn't like any of the timers that were
-            available to me, so I wrote one. I wrote it using Vanilla
-            Javascript, location.hash, and a few interesting parts of CSS and
-            HTML5.
-          </p>
-
-          <p>
-            All controls are via <code>location.hash</code>, also known as the
-            anchor tag.
-          </p>
-          <p>Created by <a href="https://jacoby.github.io/">Dave Jacoby</a></p>
-        </div>
+        <p>
+          All controls are via <code>location.hash</code>, also known as the
+          anchor tag.
+        </p>
+        <p>Created by <a href="https://jacoby.github.io/">Dave Jacoby</a></p>
       </div>
     </div>
-    <div id="numbers" class="min5"></div>
+  </div>
 
-    <script src="./tone.js"></script>
-    <script>
-      function parse_time(entry) {
-        let minutes = 0;
-        let seconds = 0;
+  <div id="time" class="min5">
+    <span id="minute"></span>
+    <span id="second"></span>
+  </div>
 
-        // 2m50s
-        if (minutes === 0 && seconds === 0) {
-          let minsec = entry.match(/(\d+)m(\d+)s/i);
-          if (typeof minsec && minsec != null && minsec.length) {
-            minutes = minsec[1];
-            seconds = minsec[2];
-          }
-        }
-        // 2m
-        if (minutes === 0 && seconds === 0) {
-          let minsec = entry.match(/(\d+)m/i);
-          if (typeof minsec && minsec != null && minsec.length) {
-            minutes = minsec[1];
-          }
-        }
-        // 2s
-        if (minutes === 0 && seconds === 0) {
-          let minsec = entry.match(/(\d+)s/i);
-          if (typeof minsec && minsec != null && minsec.length) {
-            seconds = minsec[1];
-          }
-        }
-        // convert to seconds < 60 plus minutes
-        if (seconds > 59) {
-          let newsec = parseInt(seconds / 60);
-          minutes = parseInt(minutes) + newsec;
-          seconds = seconds % 60;
-        }
-        // defaults to 5 minutes
-        if (minutes === 0 && seconds === 0) {
-          minutes = 5;
-        }
-        // no more than one hour
-        if (minutes >= 60) {
-          minutes = 60;
-          seconds = 0;
-        }
+  <script src="./tone.js"></script>
+  <script>
+    function parse_time(entry) {
+      let minutes = 0;
+      let seconds = 0;
 
-        let x = [];
-        x.push(parseInt(minutes));
-        x.push(parseInt(seconds));
-        return x;
+      // 2m50s
+      if (minutes === 0 && seconds === 0) {
+        let minsec = entry.match(/(\d+)m(\d+)s/i);
+        if (typeof minsec && minsec != null && minsec.length) {
+          minutes = minsec[1];
+          seconds = minsec[2];
+        }
+      }
+      // 2m
+      if (minutes === 0 && seconds === 0) {
+        let minsec = entry.match(/(\d+)m/i);
+        if (typeof minsec && minsec != null && minsec.length) {
+          minutes = minsec[1];
+        }
+      }
+      // 2s
+      if (minutes === 0 && seconds === 0) {
+        let minsec = entry.match(/(\d+)s/i);
+        if (typeof minsec && minsec != null && minsec.length) {
+          seconds = minsec[1];
+        }
+      }
+      // convert to seconds < 60 plus minutes
+      if (seconds > 59) {
+        let newsec = parseInt(seconds / 60);
+        minutes = parseInt(minutes) + newsec;
+        seconds = seconds % 60;
+      }
+      // defaults to 5 minutes
+      if (minutes === 0 && seconds === 0) {
+        minutes = 5;
+      }
+      // no more than one hour
+      if (minutes >= 60) {
+        minutes = 60;
+        seconds = 0;
       }
 
-      // Audio Vars
-      var freq = 880;
-      var wave = "square";
-      var AudioContext =
-        window.AudioContext || window.webkitAudioContext || false;
-      if (AudioContext) {
-        var context = new AudioContext();
-        context.resume();
-        var tone = new Tone(context, freq, wave);
-      }
+      let x = [];
+      x.push(parseInt(minutes));
+      x.push(parseInt(seconds));
+      return x;
+    }
 
-      // Timer Vars
-      var looper;
-      var target;
-      var hopper;
-      var number = 5;
-      var d = new Date();
+    // Audio Vars
+    var freq = 880;
+    var wave = "square";
+    var AudioContext =
+      window.AudioContext || window.webkitAudioContext || false;
+    if (AudioContext) {
+      var context = new AudioContext();
+      context.resume();
+      var tone = new Tone(context, freq, wave);
+    }
+
+    // Timer Vars
+    var looper;
+    var target;
+    var hopper;
+    var number = 5;
+    var d = new Date();
+    init();
+
+    // Allows for quick change
+    window.onhashchange = function () {
       init();
+    };
 
-      // Allows for quick change
-      window.onhashchange = function() {
-        init();
-      };
-
-      // starts timer
-      function init() {
-        var hash = location.hash;
-        if (hash != "#about") {
-          let minsec = [];
-          if (hash.length === 0) {
-            hopper = 5 * 60;
-          } else {
-            minsec = parse_time(hash);
-            hopper = minsec[0] * 60 + minsec[1];
-          }
-          location.hash = [minsec[0], "m", minsec[1], "s"].join("");
-          document.getElementById("close").href = location.hash;
-          target = d.getTime() + 1000 * 60 * number;
-          timer();
+    // starts timer
+    function init() {
+      var hash = location.hash;
+      if (hash != "#about") {
+        let minsec = [];
+        if (hash.length === 0) {
+          hopper = 5 * 60;
+        } else {
+          minsec = parse_time(hash);
+          hopper = minsec[0] * 60 + minsec[1];
         }
+        location.hash = [minsec[0], "m", minsec[1], "s"].join("");
+        document.getElementById("close").href = location.hash;
+        target = d.getTime() + 1000 * 60 * number;
+        timer();
       }
+    }
 
-      // handles timer
-      function timer() {
-        if (looper) {
+    // handles timer
+    function timer() {
+      if (looper) {
+        window.clearInterval(looper);
+      }
+      looper = setInterval(function () {
+        var minutes = parseInt(hopper / 60);
+        var display_minutes = minutes;
+        var seconds = parseInt(hopper % 60);
+        if (seconds < 10) {
+          seconds = "0" + seconds;
+        }
+        if (display_minutes < 10) {
+          // display_minutes = "&nbsp;" + display_minutes;
+          display_minutes = "0" + display_minutes;
+        }
+
+        console.log(
+          [hopper, minutes, seconds, "", display_minutes].join(" ")
+        );
+        var time = [display_minutes, seconds].join(":");
+        document.getElementById("minute").innerHTML = display_minutes;
+        document.getElementById("second").innerHTML = seconds;
+        hopper -= 1;
+
+        if (hopper < 0) {
           window.clearInterval(looper);
+          if (AudioContext) {
+            tone.start();
+            setTimeout(function () {
+              tone.stop();
+            }, 500);
+          }
+          console.log("done");
+        } else if (hopper < 10) {
+          if (AudioContext) {
+            tone.start();
+            setTimeout(function () {
+              tone.stop();
+            }, 50);
+          }
+          document.getElementById("time").className = "";
+          document.getElementById("time").className = "min1";
+        } else {
+          document.getElementById("time").className = "";
+          document.getElementById("time").className = "min5";
         }
-        looper = setInterval(function() {
-          var minutes = parseInt(hopper / 60);
-          var display_minutes = minutes;
-          var seconds = parseInt(hopper % 60);
-          if (seconds < 10) {
-            seconds = "0" + seconds;
-          }
-          if (display_minutes < 10) {
-            display_minutes = "&nbsp;" + display_minutes;
-          }
 
-          console.log(
-            [hopper, minutes, seconds, "", display_minutes].join(" ")
-          );
-          var time = [display_minutes, seconds].join(":");
-          document.getElementById("numbers").innerHTML = time;
-          hopper -= 1;
-          if (hopper < 0) {
-            window.clearInterval(looper);
-            if (AudioContext) {
-              tone.start();
-              setTimeout(function() {
-                tone.stop();
-              }, 500);
-            }
-            console.log("done");
-          } else if (hopper < 10) {
-            if (AudioContext) {
-              tone.start();
-              setTimeout(function() {
-                tone.stop();
-              }, 50);
-            }
-            document.getElementById("numbers").className = "";
-            document.getElementById("numbers").className = "min1";
-          } else {
-            document.getElementById("numbers").className = "";
-            document.getElementById("numbers").className = "min5";
-          }
-        }, 1000);
-      }
-    </script>
-  </body>
+      }, 1000);
+    }
+  </script>
+</body>
+
 </html>
