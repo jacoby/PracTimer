@@ -1,0 +1,140 @@
+
+    body {
+        background: #666;
+        background-color: black;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+  
+      #header {
+        font-size: 3.95vw;
+        text-align: right;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+      }
+  
+      #header a {
+        padding: 1vw;
+        color: #999999;
+        text-decoration: none;
+      }
+  
+      .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        transition: opacity 500ms;
+        visibility: hidden;
+        opacity: 0;
+        z-index: 5;
+      }
+  
+      .overlay:target {
+        visibility: visible;
+        opacity: 1;
+      }
+  
+      .popup {
+        margin: 70px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 5px;
+        width: 50%;
+        position: relative;
+        z-index: 15;
+        transition: all 5s ease-in-out;
+      }
+  
+      .popup h2 {
+        margin-top: 0;
+        color: #333;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 900;
+      }
+  
+      .popup .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        transition: all 200ms;
+        font-size: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+  
+      .popup .close:hover {
+        color: red;
+      }
+  
+      .popup .content {
+        font-size: 16px;
+        font-family: Arial, Helvetica, sans-serif;
+        max-height: 30%;
+        overflow: auto;
+      }
+  
+      /* Will work harder to stop the date from moving alter */
+      /* font-family: "Consolas", "Droid Sans Mono", "Courier New", Courier,
+            monospace; */
+  
+      .min5 {
+        color: black;
+        text-shadow:  0 0 2vw greenyellow, 
+                      0 0 4vw greenyellow,
+                      0 0 6vw greenyellow,
+                      0 0 8vw greenyellow,
+                      0 0 10vw greenyellow;
+      }
+  
+      .min1 {
+        color: black;
+        text-shadow:  0 0 2vw red,
+                      0 0 4vw red,
+                      0 0 6vw red,
+                      0 0 8vw red,
+                      0 0 10vw red;
+      }
+  
+      #time {
+        text-align: center;
+      }
+  
+      #minute,
+      #second {
+        -webkit-text-stroke-color: white;
+        -webkit-text-stroke-width: 0.38vw;
+        color: black;
+        font-family: "Oswald", Impact, sans-serif;
+        font-weight: bold;
+        letter-spacing: -1vw;
+      }
+  
+      @media screen and (orientation: portrait) {
+  
+        #minute,
+        #second {
+          display: block;
+          font-size: 65vw;
+          line-height: 60vw;
+        }
+      }
+  
+      @media screen and (orientation: landscape) {
+        #minute::after {
+          content: ":";
+        }
+  
+        #minute,
+        #second {
+          display: inline;
+          font-size: 35vw;
+          line-height: 30vw;
+        }
+      }
+  
