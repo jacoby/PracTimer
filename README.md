@@ -17,6 +17,7 @@ Lightning Talks.
 
 # Contributors
 
+
 [https://github.com/gregoa](@gregoa) corrected my spelling
 
 
