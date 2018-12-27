@@ -1,8 +1,7 @@
 {
   "short_name": "Practimer",
   "name": "Practimer - a Practical Web Timer",
-  "start_url2": "https://practimer.me/#5m0s",
-  "start_url": "https://445523ab.ngrok.io/#5m0s",
+  "start_url": "https://practimer.me/#5m0s",
   "display": "minimal-ui",
   "scope": "/",
   "background_color": "#000000",
