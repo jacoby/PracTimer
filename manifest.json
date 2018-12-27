@@ -2,7 +2,7 @@
   "short_name": "Practimer",
   "name": "Practimer - a Practical Web Timer",
   "start_url": "https://practimer.me/#5m0s",
-  "display": "minimal-ui",
+  "display": "browser",
   "scope": "/",
   "background_color": "#000000",
   "theme_color": "#000000",
