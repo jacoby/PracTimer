@@ -1,18 +1,21 @@
 {
   "short_name": "Practimer",
   "name": "Practimer - a Practical Web Timer",
-  "icons": [{
-    "src": "/images/icon-192.png",
-    "type": "image/png",
-    "sizes": "192x192"
-  }, {
-    "src": "/images/icon-512.png",
-    "type": "image/png",
-    "sizes": "512x512"
-  }],
-  "start_url": "/#5m0s",
+  "start_url": "https://practimer.me/#5m0s",
   "display": "minimal-ui",
   "scope": "/",
   "background_color": "#000000",
-  "theme_color": "#000000"
+  "theme_color": "#000000",
+  "lang": "",
+  "orientation": "any",
+  "description": "I had need for a timer. I didn't like any of the timers that were available to me, so I wrote one. I wrote it using Vanilla Javascript, location.hash, and a few interesting parts of CSS and HTML5.",
+  "icons": [{
+      "src": "https://practimer.me/images/icon-192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://practimer.me/images/icon-512.png",
+      "sizes": "512x512"
+    }
+  ]
 }
