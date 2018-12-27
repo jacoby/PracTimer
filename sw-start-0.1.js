@@ -1,23 +1,13 @@
-/**
- * starting a service worker
- */
+//This is the "Offline page" service worker
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register('./sw-0.1.js')
-      .then(
-        function (registration) {
-          console.log('reg success with scope: ', registration.scope)
-        },
-        function (err) {
-          console.log('reg fail with scope: ', err)
-        }
-      )
-    console.log('SERVICE WORKER!');
-  });
-  window.addEventListener('install', function (event) {
-    event.waitUntil();
-  })
+//Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
+if (navigator.serviceWorker.controller) {
+  console.log('[PWA Builder] active service worker found, no need to register')
 } else {
-  console.log('SORRY! NO SERVICE WORKER!');
+  //Register the ServiceWorker
+  navigator.serviceWorker.register('sw-0.1.js', {
+    scope: './'
+  }).then(function (reg) {
+    console.log('Service worker has been registered for scope:' + reg.scope);
+  });
 }
