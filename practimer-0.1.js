@@ -125,6 +125,9 @@ function timer() {
     }
 
     if (hopper < 0) {
+      document.getElementById("time").classList.add("min1");
+      document.getElementById("time").classList.remove("min5");
+
       window.clearInterval(looper);
       if (AudioContext) {
         tone.start();
@@ -140,11 +143,11 @@ function timer() {
           tone.stop();
         }, 50);
       }
-      document.getElementById("time").className = "";
-      document.getElementById("time").className = "min1";
+      document.getElementById("time").classList.add("min1");
+      document.getElementById("time").classList.remove("min5");
     } else {
-      document.getElementById("time").className = "";
-      document.getElementById("time").className = "min5";
+      document.getElementById("time").classList.remove("min1");
+      document.getElementById("time").classList.add("min5");
     }
 
   }, 1000);
