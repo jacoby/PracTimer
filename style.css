@@ -96,15 +96,13 @@ body {
 .min5 {
   color: lightgray;
   -webkit-text-stroke-color: grey;
-  /* -webkit-text-stroke-width: 0.38vw; */
-  -webkit-text-stroke-width: 1vw;
+  -webkit-text-stroke-width: 0.3em;
 }
 
 .min1 {
   color: red;
   -webkit-text-stroke-color: darkred;
-  /* -webkit-text-stroke-width: 0.38vw; */
-  -webkit-text-stroke-width: 1vw;
+  -webkit-text-stroke-width: 0.3em;
 }
 
 @media screen and (orientation: portrait) {
